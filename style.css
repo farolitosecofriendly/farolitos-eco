@@ -33,7 +33,7 @@ header .brand {
 }
 
 header .brand .logo {
-  width: 120px;   /* tamaño del logo corregido */
+  width: 80px;   /* tamaño del logo */
   height: auto;
   border-radius: 10px;
 }
