@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Farolitos EcoFriendly</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="img/WhatsApp Image 2025-09-26 at 6.42.48 PM.jpeg" />
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">
+    <img src="img/WhatsApp Image 2025-09-26 at 6.42.48 PM.jpeg" alt="Logo" class="logo">
+    <div>
+      <h1>Farolitos EcoFriendly</h1>
+      <div class="tagline">Farolitos ecológicos — plástico reciclado + pigmentos orgánicos</div>
+    </div>
+  </div>
+  <nav class="main-nav">
+    <a href="#inicio">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#productos">Productos</a>
+    <a href="#clientes">Clientes</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#carrito">Carrito</a>
+  </nav>
+</header>
+
+<main class="container">
+  <section id="inicio" class="hero">
+    <div class="hero-left">
+      <h2>Farolitos ecológicos y seguros</h2>
+      <p>Hechos con plástico reciclado y pigmentos orgánicos. Duraderos, seguros para hogares con niños y mascotas. Cada farolito puede durar más de 5 años.</p>
+      <button class="btn primary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Ver producto</button>
+    </div>
+    <div class="hero-right">
+      <img src="img/WhatsApp Image 2025-09-26 at 6.44.04 PM.jpeg" alt="Farolitos" class="hero-img">
+    </div>
+  </section>
+
+  <section id="nosotros" class="section">
+    <h2>Nosotros</h2>
+    <p>Somos un emprendimiento comprometido con el planeta. Fabricamos farolitos con plástico reciclado y pigmentos orgánicos, seguros y con diseño moderno.</p>
+  </section>
+
+  <section id="productos" class="section">
+    <h2>Producto</h2>
+    <div class="product-card">
+      <img src="img/WhatsApp Image 2025-09-26 at 6.44.04 PM.jpeg" alt="Docena de faroles" class="product-img">
+      <div class="product-info">
+        <h3>1 Docena de Faroles Surtidos</h3>
+        <p>(2 unidades de cada color)</p>
+        <p class="price">$47.000 / docena</p>
+        <div class="qty-row">
+          <label for="cantidad">Cantidad (docenas):</label>
+          <input id="cantidad" type="number" value="1" min="1" onchange="actualizarCantidad()" />
+        </div>
+        <button class="btn primary" onclick="addSingleProduct()">Añadir al carrito</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="clientes" class="section">
+    <h2>Lo que dicen nuestros clientes</h2>
+    <div class="carousel" id="carousel">
+      <div class="slide"><img src="img/WhatsApp Image 2025-09-26 at 6.42.48 PM (1).jpeg" alt="testimonio"></div><div class="slide"><img src="img/WhatsApp Image 2025-09-26 at 6.46.57 PM.jpeg" alt="testimonio"></div><div class="slide"><img src="img/WhatsApp Image 2025-09-26 at 6.42.48 PM.jpeg" alt="testimonio"></div><div class="slide"><img src="img/WhatsApp Image 2025-09-26 at 6.44.04 PM.jpeg" alt="testimonio"></div>
+    </div>
+  </section>
+
+  <section id="contacto" class="section">
+    <h2>Contacto</h2>
+    <p>📱 WhatsApp: 3127461948 / 3165375637</p>
+    <p>📧 ecofriendly.coll@gmail.com</p>
+    <p>🎵 TikTok: <a href="https://www.tiktok.com/@farolitosecofriendly" target="_blank">@farolitosecofriendly</a></p>
+  </section>
+
+  <section id="carrito" class="section cart-section">
+    <h2>Carrito de compras</h2>
+    <ul id="lista-carrito"></ul>
+    <p id="subtotal">Subtotal: $0</p>
+    <div class="row">
+      <label for="municipio">Selecciona tu municipio:</label>
+      <select id="municipio" onchange="calcularEnvio()">
+        <option value="">--Selecciona--</option>
+        <option>Bogotá</option>
+        <option>Cundinamarca</option>
+        <option>Ibagué</option>
+        <option>Cali</option>
+        <option>Otro</option>
+      </select>
+    </div>
+    <p id="envio">Envío: $0</p>
+    <p id="total">Total: $0</p>
+    <button id="boton-wompi" class="btn primary">Pagar con Wompi</button>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2025 Farolitos EcoFriendly</p>
+</footer>
+
+<!-- Wompi widget -->
+<script src="https://checkout.wompi.co/widget.js"></script>
+
+<script>
+// carrito y lógica
+let carrito = [];
+let envio = 0;
+let cantidadActual = parseInt(document.getElementById('cantidad').value || 1);
+
+// redondear a 100
+function redondear(valor){ return Math.round(valor/100)*100; }
+
+function addSingleProduct(){
+  const qty = cantidadActual || 1;
+  // each docena price 47000
+  for(let i=0;i<qty;i++){
+    carrito.push({producto:'1 Docena de Faroles Surtidos', precio:47000});
+  }
+  mostrarCarrito();
+}
+
+function actualizarCantidad(){
+  cantidadActual = parseInt(document.getElementById('cantidad').value) || 1;
+}
+
+function mostrarCarrito(){
+  const cont = document.getElementById('lista-carrito');
+  cont.innerHTML = '';
+  let subtotal = 0;
+  carrito.forEach((it, idx)=>{
+    subtotal += it.precio;
+    const li = document.createElement('li');
+    li.textContent = `${it.producto} - $${it.precio}`;
+    cont.appendChild(li);
+  });
+  document.getElementById('subtotal').textContent = `Subtotal: $${subtotal}`;
+  document.getElementById('envio').textContent = `Envío: $${envio}`;
+  document.getElementById('total').textContent = `Total: $${subtotal + envio}`;
+}
+
+function calcularEnvio(){
+  const municipio = document.getElementById('municipio').value;
+  const kilos = carrito.length; // 1 docena = 1kg
+  if(kilos === 0){ envio = 0; mostrarCarrito(); return; }
+  // tarifas base y 3kg datos predefinidos
+  let costo = 0;
+  if(municipio === 'Bogotá'){
+    if(kilos === 1) costo = 8000;
+    else if(kilos === 2) costo = 12200;
+    else if(kilos === 3) costo = 15900;
+    else {
+      let inc = ((12200-8000) + (15900-12200))/2;
+      costo = 15900 + inc*(kilos-3);
+    }
+  } else if(municipio === 'Cundinamarca' || municipio === 'Ibagué'){
+    if(kilos === 1) costo = 11000;
+    else if(kilos === 2) costo = 15000;
+    else if(kilos === 3) costo = 19300;
+    else {
+      let inc = ((15000-11000) + (19300-15000))/2;
+      costo = 19300 + inc*(kilos-3);
+    }
+  } else if(municipio === 'Cali'){
+    if(kilos === 1) costo = 18000;
+    else if(kilos === 2) costo = 22400;
+    else if(kilos === 3) costo = 27100;
+    else {
+      let inc = ((22400-18000) + (27100-22400))/2;
+      costo = 27100 + inc*(kilos-3);
+    }
+  } else {
+    if(kilos === 1) costo = 18000;
+    else if(kilos === 2) costo = 22400;
+    else if(kilos === 3) costo = 27100;
+    else {
+      let inc = ((22400-18000) + (27100-22400))/2;
+      costo = 27100 + inc*(kilos-3);
+    }
+  }
+  envio = redondear(costo);
+  mostrarCarrito();
+}
+
+// Wompi checkout integration (sandbox public key)
+const publicKey = "pub_test_lrtVEVqzoOTXlfyTS354VPLpnccTjUbM";
+
+document.getElementById('boton-wompi').addEventListener('click', function(){
+  const subtotal = carrito.reduce((s,i)=>s+i.precio,0);
+  const total = subtotal + envio;
+  if(total === 0){ alert('El carrito está vacío.'); return; }
+
+  const checkout = new WidgetCheckout({
+    currency: "COP",
+    amountInCents: total * 100,
+    reference: "PEDIDO_" + Date.now(),
+    publicKey: publicKey,
+    redirectUrl: window.location.href
+  });
+  checkout.open(function(result){ 
+    console.log('Wompi result:', result);
+    if(result && result.transaction && result.transaction.status === 'APPROVED'){
+      alert('Pago aprobado. ¡Gracias por tu compra!');
+      // limpiamos carrito
+      carrito = [];
+      envio = 0;
+      document.getElementById('cantidad').value = 1;
+      mostrarCarrito();
+    } else {
+      alert('Pago no completado o cancelado.');
+    }
+  });
+});
+
+// simple carousel auto
+let slideIndex = 0;
+function showSlides(){
+  const slides = document.querySelectorAll('#carousel .slide');
+  slides.forEach(s=>s.style.display='none');
+  slideIndex++;
+  if(slideIndex > slides.length) slideIndex = 1;
+  if(slides.length) slides[slideIndex-1].style.display = 'block';
+  setTimeout(showSlides, 3000);
+}
+showSlides();
+
+</script>
+</body>
+</html>
