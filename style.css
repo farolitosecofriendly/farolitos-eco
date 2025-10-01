@@ -33,7 +33,7 @@ header .brand {
 }
 
 header .brand .logo {
-  width: 80px;   /* tamaño del logo */
+  width: 120px;   /* tamaño del logo corregido */
   height: auto;
   border-radius: 10px;
 }
@@ -125,9 +125,4 @@ header .tagline {
     flex-direction: column;
     gap: 10px;
   }
-}
-.logo {
-  width: 120px;   /* ancho fijo */
-  height: auto;   /* mantiene proporción */
-  display: block;
 }
