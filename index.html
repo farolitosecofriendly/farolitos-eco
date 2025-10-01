@@ -7,12 +7,14 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- ======= HEADER ======= -->
   <header>
     <div class="brand">
+      <!-- Logo -->
       <img src="img/logo.jpeg" alt="Logo" class="logo">
-      <h1>Farolitos EcoFriendly</h1>
-      <div class="tagline">Farolitos ecológicos — plástico reciclado + pigmentos orgánicos</div>
+      <div>
+        <h1>Farolitos EcoFriendly</h1>
+        <div class="tagline">Farolitos ecológicos — plástico reciclado + pigmentos orgánicos</div>
+      </div>
     </div>
     <nav class="main-nav">
       <a href="#inicio">Inicio</a>
@@ -24,8 +26,8 @@
     </nav>
   </header>
 
-  <!-- ======= INICIO ======= -->
   <main class="container">
+    <!-- Hero -->
     <section id="inicio" class="hero">
       <div class="hero-left">
         <h2>Farolitos ecológicos y seguros</h2>
@@ -33,71 +35,37 @@
         <button class="btn primary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">Ver producto</button>
       </div>
       <div class="hero-right">
-        <img src="img/farol1.jpeg" alt="Farolito" class="hero-img">
+        <!-- Imagen del producto -->
+        <img src="img/farol1.jpg" alt="Farolito" class="hero-img">
       </div>
     </section>
 
-    <!-- ======= NOSOTROS ======= -->
-    <section id="nosotros">
-      <h2>Sobre Nosotros</h2>
-      <p>Somos una empresa comprometida con el medio ambiente. Fabricamos farolitos con materiales reciclados y pigmentos naturales, reduciendo el impacto ambiental y ofreciendo productos duraderos y seguros.</p>
+    <!-- Nosotros -->
+    <section id="nosotros" class="section">
+      <h2>Sobre nosotros</h2>
+      <p>Somos una empresa comprometida con el medio ambiente. Fabricamos farolitos utilizando plástico reciclado y pigmentos orgánicos, reduciendo el impacto ambiental y promoviendo el consumo responsable.</p>
     </section>
 
-    <!-- ======= PRODUCTOS ======= -->
-    <section id="productos">
-      <h2>Nuestros Productos</h2>
-      <div class="productos-grid">
-        <div class="producto">
-          <img src="img/farol1.jpeg" alt="Farolito ecológico">
-          <h3>Farolito Clásico</h3>
-          <p>Hecho con plástico reciclado. Duración de hasta 5 años.</p>
-        </div>
-        <div class="producto">
-          <img src="img/farol1.jpeg" alt="Farolito moderno">
-          <h3>Farolito Moderno</h3>
-          <p>Diseño innovador con pigmentos naturales y estilo elegante.</p>
-        </div>
-      </div>
+    <!-- Productos -->
+    <section id="productos" class="section">
+      <h2>Nuestros productos</h2>
+      <p>Ofrecemos farolitos de diferentes tamaños y colores, todos fabricados con materiales reciclados y libres de químicos dañinos.</p>
     </section>
 
-    <!-- ======= CLIENTES ======= -->
-    <section id="clientes">
+    <!-- Clientes -->
+    <section id="clientes" class="section">
       <h2>Lo que dicen nuestros clientes</h2>
-      <blockquote>
-        "Los farolitos EcoFriendly han transformado nuestro hogar. Seguros y hermosos." — Ana P.
-      </blockquote>
-      <blockquote>
-        "Un producto increíble, ecológico y de larga duración." — Carlos R.
-      </blockquote>
+      <p>"Los farolitos son hermosos y muy resistentes. Me encanta que sean seguros para mis hijos."</p>
+      <p>"Una excelente opción eco-friendly, ¡los recomiendo!"</p>
     </section>
 
-    <!-- ======= CONTACTO ======= -->
-    <section id="contacto">
+    <!-- Contacto -->
+    <section id="contacto" class="section">
       <h2>Contacto</h2>
-      <form>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-
-        <label for="email">Correo:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="mensaje">Mensaje:</label>
-        <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
-
-        <button type="submit" class="btn primary">Enviar</button>
-      </form>
-    </section>
-
-    <!-- ======= CARRITO ======= -->
-    <section id="carrito">
-      <h2>Carrito</h2>
-      <p>Tu carrito está vacío. Agrega productos para continuar con tu compra.</p>
+      <p>📍 Dirección: Calle Verde 123, Ciudad Eco</p>
+      <p>📧 Email: contacto@farolitosecofriendly.com</p>
+      <p>📞 Teléfono: +57 123 456 789</p>
     </section>
   </main>
-
-  <!-- ======= FOOTER ======= -->
-  <footer>
-    <p>&copy; 2024 Farolitos EcoFriendly. Todos los derechos reservados.</p>
-  </footer>
 </body>
 </html>
