@@ -126,3 +126,8 @@ header .tagline {
     gap: 10px;
   }
 }
+.logo {
+  width: 120px;   /* ancho fijo */
+  height: auto;   /* mantiene proporción */
+  display: block;
+}
